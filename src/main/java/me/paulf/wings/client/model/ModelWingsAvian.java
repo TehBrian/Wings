@@ -12,13 +12,10 @@ import java.util.Objects;
 
 public final class ModelWingsAvian extends ModelWings<AnimatorAvian> {
     private final ModelPart root;
-
     private final ImmutableList<ModelPart> bonesLeft, bonesRight;
-
     private final ImmutableList<ModelPart> feathersLeft, feathersRight;
 
     public ModelWingsAvian() {
-        this.texWidth = this.texHeight = 64;
         this.root = new ModelPart(this, 0, 0);
         ModelPart coracoidLeft = new ModelPart(this, 0, 28);
         coracoidLeft.setPos(1.5F, 5.5F, 2.5F);
@@ -117,7 +114,7 @@ public final class ModelWingsAvian extends ModelWings<AnimatorAvian> {
         float offX, float offY, float offZ,
         int width, int height
     ) {
-        ObjectList<ModelPart.ModelBox> cubeList = Objects.requireNonNull(ObfuscationReflectionHelper.getPrivateValue(ModelPart.class, model, "field_78804_l")); // "cubeList"
+        ObjectList<ModelPart.Cube> cubeList = Objects.requireNonNull(ObfuscationReflectionHelper.getPrivateValue(ModelPart.class, model, "field_78804_l")); // "cubeList"
         cubeList.add(Model3DTexture.create(offX, offY, offZ, width, height, u, v, 64, 64));
     }
 }

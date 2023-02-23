@@ -7,13 +7,10 @@ import net.minecraft.client.model.geom.ModelPart;
 
 public final class ModelWingsInsectoid extends ModelWings<AnimatorInsectoid> {
     private final ModelPart root;
-
     private final ModelPart wingLeft;
-
     private final ModelPart wingRight;
 
     public ModelWingsInsectoid() {
-        this.texWidth = this.texHeight = 64;
         this.root = new ModelPart(this, 0, 0);
         this.wingLeft = new ModelPart(this, 0, 0);
         this.wingLeft.setPos(0, 2, 3.5F);
