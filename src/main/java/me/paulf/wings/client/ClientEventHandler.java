@@ -81,7 +81,7 @@ public final class ClientEventHandler {
     @SubscribeEvent
     public static void onCameraSetup(EntityViewRenderEvent.CameraSetup event) {
         Flights.ifPlayer(Minecraft.getInstance().cameraEntity, (player, flight) -> {
-            float delta = (float) event.getRenderPartialTicks();
+            float delta = (float) event.getPartialTicks();
             float amt = flight.getFlyingAmount(delta);
             if (amt > 0.0F) {
                 float roll = Mth.lerpDegrees(

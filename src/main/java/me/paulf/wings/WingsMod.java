@@ -10,11 +10,11 @@ import me.paulf.wings.server.effect.WingsEffects;
 import me.paulf.wings.server.flight.Flight;
 import me.paulf.wings.server.item.WingsItems;
 import me.paulf.wings.server.sound.WingsSounds;
-import net.minecraft.core.DefaultedRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.DefaultedRegistry;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -26,7 +26,7 @@ public final class WingsMod {
 
     private static WingsMod INSTANCE;
 
-    public static final Registry<FlightApparatus> WINGS = new DefaultedRegistry<>(Names.NONE.toString(), ResourceKey.createRegistryKey(new ResourceLocation(ID, "wings")), Lifecycle.experimental());
+    public static final Registry<FlightApparatus> WINGS = new DefaultedRegistry<>(Names.NONE.toString(), ResourceKey.createRegistryKey(new ResourceLocation(ID, "wings")), Lifecycle.experimental(), null);
 
     public static final FlightApparatus NONE_WINGS = Registry.register(WINGS, Names.NONE, FlightApparatus.NONE);
     public static final FlightApparatus ANGEL_WINGS = Registry.register(WINGS, Names.ANGEL, new SimpleFlightApparatus(WingsItemsConfig.ANGEL));

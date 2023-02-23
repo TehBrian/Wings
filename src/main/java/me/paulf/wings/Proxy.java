@@ -13,9 +13,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.util.IItemProvider;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -35,7 +34,7 @@ public abstract class Proxy {
         CapabilityManager.INSTANCE.register(Flight.class, SimpleStorage.ofVoid(), FlightDefault::new);
         CapabilityManager.INSTANCE.register(InSomniable.class, SimpleStorage.ofVoid(), InSomniable::new);
         event.enqueueWork(() -> {
-            BiConsumer<IItemProvider, RegistryObject<Item>> reg = (item, obj) -> {
+            BiConsumer<Item, RegistryObject<Item>> reg = (item, obj) -> {
                 BrewingRecipeRegistry.addRecipe(
                     new PotionMix(Potions.SLOW_FALLING, Ingredient.of(item), new ItemStack(obj.get()))
                 );
@@ -58,7 +57,7 @@ public abstract class Proxy {
 
     public void addFlightListeners(Player player, Flight instance) {
         if (player instanceof ServerPlayer) {
-            instance.registerFlyingListener(isFlying -> player.abilities.mayfly = isFlying);
+            instance.registerFlyingListener(isFlying -> player.getAbilities().mayfly = isFlying);
             instance.registerFlyingListener(isFlying -> {
                 if (isFlying) {
                     player.removeVehicle();

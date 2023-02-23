@@ -10,7 +10,7 @@ public final class WingsEffects {
     private WingsEffects() {
     }
 
-    public static final DeferredRegister<MobEffect> REG = DeferredRegister.create(ForgeRegistries.POTIONS, WingsMod.ID);
+    public static final DeferredRegister<MobEffect> REG = DeferredRegister.create(ForgeRegistries.POTIONS.getRegistryName(), WingsMod.ID);
 
     public static final RegistryObject<MobEffect> WINGS = REG.register("wings", () -> new WingedEffect(0x97cae4));
 }

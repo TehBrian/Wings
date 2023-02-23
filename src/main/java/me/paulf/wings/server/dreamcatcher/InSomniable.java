@@ -3,13 +3,13 @@ package me.paulf.wings.server.dreamcatcher;
 import me.paulf.wings.server.item.WingsItems;
 import me.paulf.wings.util.NBTSerializer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.util.Constants;
 
 import java.util.function.IntConsumer;
 
@@ -128,7 +128,7 @@ public final class InSomniable {
         @Override
         public InSomniable deserialize(CompoundTag compound) {
             State state;
-            if (compound.contains(SEARCH_STATE, Constants.NBT.TAG_INT)) {
+            if (compound.contains(SEARCH_STATE, Tag.TAG_INT)) {
                 state = new SearchState(compound.getInt(SEARCH_STATE));
             } else {
                 state = InSomniacState.INSTANCE;
