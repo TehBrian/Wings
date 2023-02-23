@@ -1,9 +1,9 @@
 package me.paulf.wings.server.flight;
 
 import me.paulf.wings.server.apparatus.FlightApparatus;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.function.Consumer;

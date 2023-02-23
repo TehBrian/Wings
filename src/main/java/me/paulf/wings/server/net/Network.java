@@ -4,8 +4,8 @@ import me.paulf.wings.WingsMod;
 import me.paulf.wings.server.net.clientbound.MessageSyncFlight;
 import me.paulf.wings.server.net.serverbound.MessageControlFlying;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 

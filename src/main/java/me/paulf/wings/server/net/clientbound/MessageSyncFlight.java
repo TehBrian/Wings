@@ -5,8 +5,8 @@ import me.paulf.wings.server.flight.FlightDefault;
 import me.paulf.wings.server.flight.Flights;
 import me.paulf.wings.server.net.ClientMessageContext;
 import me.paulf.wings.server.net.Message;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Player;
 
 public final class MessageSyncFlight implements Message {
     private int playerId;

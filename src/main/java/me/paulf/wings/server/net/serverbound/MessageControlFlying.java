@@ -4,8 +4,8 @@ import me.paulf.wings.server.flight.Flight;
 import me.paulf.wings.server.flight.Flights;
 import me.paulf.wings.server.net.Message;
 import me.paulf.wings.server.net.ServerMessageContext;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Player;
 
 public final class MessageControlFlying implements Message {
     private boolean isFlying;

@@ -3,12 +3,12 @@ package me.paulf.wings.server.dreamcatcher;
 import me.paulf.wings.server.item.WingsItems;
 import me.paulf.wings.util.NBTSerializer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 
 import java.util.function.IntConsumer;

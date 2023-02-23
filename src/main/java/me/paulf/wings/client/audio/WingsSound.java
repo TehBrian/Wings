@@ -3,9 +3,9 @@ package me.paulf.wings.client.audio;
 import me.paulf.wings.server.flight.Flight;
 import me.paulf.wings.server.sound.WingsSounds;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Player;
 
 public final class WingsSound extends AbstractTickableSoundInstance {
     private final Player player;
