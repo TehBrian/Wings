@@ -7,11 +7,11 @@ import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.entity.LivingEntity;
 
-public final class LayerWings extends LayerRenderer<LivingEntity, HumanoidModel<LivingEntity>> {
+public final class LayerWings extends RenderLayer<LivingEntity, HumanoidModel<LivingEntity>> {
     private final TransformFunction transform;
 
     public LayerWings(LivingEntityRenderer<LivingEntity, HumanoidModel<LivingEntity>> renderer, TransformFunction transform) {

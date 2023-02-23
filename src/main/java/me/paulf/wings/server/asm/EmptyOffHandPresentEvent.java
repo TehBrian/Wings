@@ -1,17 +1,17 @@
 package me.paulf.wings.server.asm;
 
-import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraftforge.eventbus.api.Event;
 
 @Event.HasResult
 public final class EmptyOffHandPresentEvent extends Event {
-    private final ClientPlayerEntity player;
+    private final AbstractClientPlayer player;
 
-    public EmptyOffHandPresentEvent(ClientPlayerEntity player) {
+    public EmptyOffHandPresentEvent(AbstractClientPlayer player) {
         this.player = player;
     }
 
-    public ClientPlayerEntity getPlayer() {
+    public AbstractClientPlayer getPlayer() {
         return this.player;
     }
 }

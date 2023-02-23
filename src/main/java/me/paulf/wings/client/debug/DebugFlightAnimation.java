@@ -6,7 +6,7 @@ import me.paulf.wings.WingsMod;
 import me.paulf.wings.server.effect.WingsEffects;
 import me.paulf.wings.server.flight.Flights;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.RemoteClientPlayerEntity;
+import net.minecraft.client.player.RemotePlayer;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.world.entity.Entity;
@@ -20,7 +20,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 import java.util.UUID;
 
@@ -77,7 +77,7 @@ public final class DebugFlightAnimation {
                 Minecraft mc = Minecraft.getInstance();
                 ClientLevel world = mc.level;
                 if (world != null && (this.player == null || this.player.level != world)) {
-                    this.player = new RemoteClientPlayerEntity(world, PROFILE) {{
+                    this.player = new RemotePlayer(world, PROFILE) {{
                         this.getEntityData().set(DATA_PLAYER_MODE_CUSTOMISATION, (byte) 0xFF);
                     }};
                     this.player.setId(-this.player.getId());

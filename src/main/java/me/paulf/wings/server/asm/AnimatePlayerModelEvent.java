@@ -1,6 +1,6 @@
 package me.paulf.wings.server.asm;
 
-import net.minecraft.client.renderer.entity.model.PlayerModel;
+import net.minecraft.client.model.PlayerModel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 

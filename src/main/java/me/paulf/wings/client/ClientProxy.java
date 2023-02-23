@@ -19,9 +19,9 @@ import me.paulf.wings.util.KeyInputListener;
 import me.paulf.wings.util.SimpleStorage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
-import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
@@ -68,7 +68,7 @@ public final class ClientProxy extends Proxy {
                     .unordered()
                     .distinct()
                     .forEach(render -> {
-                        ModelRenderer body = ((HumanoidModel<?>) render.getModel()).body;
+                        ModelPart body = ((HumanoidModel<?>) render.getModel()).body;
                         @SuppressWarnings("unchecked") LivingEntityRenderer<LivingEntity, HumanoidModel<LivingEntity>> livingRender = (LivingEntityRenderer<LivingEntity, HumanoidModel<LivingEntity>>) render;
                         livingRender.addLayer(new LayerWings(livingRender, (player, stack) -> {
                             if (player.isCrouching()) {

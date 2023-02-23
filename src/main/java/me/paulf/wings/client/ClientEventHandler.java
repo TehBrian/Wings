@@ -13,9 +13,8 @@ import me.paulf.wings.server.asm.GetCameraEyeHeightEvent;
 import me.paulf.wings.server.flight.Flights;
 import me.paulf.wings.util.Mth;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.client.renderer.entity.model.PlayerModel;
+import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.model.PlayerModel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
@@ -72,8 +71,8 @@ public final class ClientEventHandler {
     @SubscribeEvent
     public static void onGetCameraEyeHeight(GetCameraEyeHeightEvent event) {
         Entity entity = event.getEntity();
-        if (entity instanceof ClientPlayerEntity) {
-            FlightViews.get((ClientPlayerEntity) entity).ifPresent(flight ->
+        if (entity instanceof AbstractClientPlayer) {
+            FlightViews.get((AbstractClientPlayer) entity).ifPresent(flight ->
                 flight.tickEyeHeight(event.getValue(), event::setValue)
             );
         }
@@ -114,8 +113,8 @@ public final class ClientEventHandler {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player entity = event.player;
-        if (event.phase == TickEvent.Phase.END && entity instanceof AbstractClientPlayerEntity) {
-            AbstractClientPlayerEntity player = (AbstractClientPlayerEntity) entity;
+        if (event.phase == TickEvent.Phase.END && entity instanceof AbstractClientPlayer) {
+            AbstractClientPlayer player = (AbstractClientPlayer) entity;
             FlightViews.get(player).ifPresent(FlightView::tick);
         }
     }

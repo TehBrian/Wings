@@ -2,7 +2,7 @@ package me.paulf.wings.util;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.Tag;
 import net.minecraftforge.common.capabilities.Capability;
 
 import java.util.function.Consumer;
@@ -19,12 +19,12 @@ public final class SimpleStorage<T> implements Capability.IStorage<T> {
     }
 
     @Override
-    public INBT writeNBT(Capability<T> capability, T instance, Direction side) {
+    public Tag writeNBT(Capability<T> capability, T instance, Direction side) {
         return this.serializer.apply(instance);
     }
 
     @Override
-    public void readNBT(Capability<T> capability, T instance, Direction side, INBT tag) {
+    public void readNBT(Capability<T> capability, T instance, Direction side, Tag tag) {
         this.deserializer.accept(tag instanceof CompoundTag ? (CompoundTag) tag : new CompoundTag());
     }
 

@@ -1,8 +1,8 @@
 package me.paulf.wings.util;
 
 import com.google.common.collect.ImmutableListMultimap;
+import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.client.util.InputMappings;
 import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.settings.IKeyConflictContext;
@@ -88,7 +88,7 @@ public final class KeyInputListener {
 
         @Override
         public BindingBuilder key(String desc, IKeyConflictContext context, KeyModifier modifier, int keyCode) {
-            KeyMapping binding = new KeyMapping(desc, context, modifier, InputMappings.Type.KEYSYM, keyCode, this.category);
+            KeyMapping binding = new KeyMapping(desc, context, modifier, InputConstants.Type.KEYSYM, keyCode, this.category);
             ClientRegistry.registerKeyBinding(binding);
             return new BindingBuilder(this, binding);
         }

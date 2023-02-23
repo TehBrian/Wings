@@ -1,8 +1,8 @@
 package me.paulf.wings.client.model;
 
-import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.core.Direction;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 
 // TODO: replace reflection with mixin
-public final class Model3DTexture extends ModelRenderer.ModelBox {
+public final class Model3DTexture extends ModelPart.ModelBox {
     private final int width;
 
     private final int height;
@@ -38,7 +38,7 @@ public final class Model3DTexture extends ModelRenderer.ModelBox {
         this.v2 = v2;
         int faceCount = 2 + 2 * width + 2 * height;
         final String MODEL_BOX_QUADS = "field_78254_i"; // quads
-        Object quadsOld = Objects.requireNonNull(ObfuscationReflectionHelper.getPrivateValue(ModelRenderer.ModelBox.class, this, MODEL_BOX_QUADS));
+        Object quadsOld = Objects.requireNonNull(ObfuscationReflectionHelper.getPrivateValue(ModelPart.ModelBox.class, this, MODEL_BOX_QUADS));
         Class<?> texturedQuadClass = quadsOld.getClass().getComponentType();
         Object vertexPositionsArray = getPrivateValue(((Object[]) quadsOld)[0], "field_78239_a"); // vertexPositions
         Class<?> positionTextureVertexClass = vertexPositionsArray.getClass().getComponentType();
@@ -101,7 +101,7 @@ public final class Model3DTexture extends ModelRenderer.ModelBox {
             float f8 = this.v1 + (this.v2 - this.v1) * ((float) k / this.height) - f6;
             faces.add(x1, f7, z0, x0, f7, z1, this.u2, f8, this.u1, f8, Direction.DOWN);
         }
-        ObfuscationReflectionHelper.setPrivateValue(ModelRenderer.ModelBox.class, this, quads, MODEL_BOX_QUADS);
+        ObfuscationReflectionHelper.setPrivateValue(ModelPart.ModelBox.class, this, quads, MODEL_BOX_QUADS);
     }
 
     interface FaceAdder {

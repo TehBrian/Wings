@@ -3,15 +3,14 @@ package me.paulf.wings.server.asm;
 import com.mojang.blaze3d.vertex.PoseStack;
 import me.paulf.wings.util.Access;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.renderer.FirstPersonRenderer;
-import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.item.MapItem;
+import net.minecraft.world.item.MapItem;
 import net.minecraft.util.Mth;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.Event;
@@ -30,7 +29,7 @@ public final class WingsHooksClient {
         }
     }
 
-    public static void onApplyPlayerRotations(AbstractClientPlayerEntity player, PoseStack matrixStack, float delta) {
+    public static void onApplyPlayerRotations(AbstractClientPlayer player, PoseStack matrixStack, float delta) {
         MinecraftForge.EVENT_BUS.post(new ApplyPlayerRotationsEvent(player, matrixStack, delta));
     }
 
@@ -58,7 +57,7 @@ public final class WingsHooksClient {
         boolean isOffHand = slot == -1;
         if (toEmpty && isOffHand) {
             Minecraft mc = Minecraft.getInstance();
-            ClientPlayerEntity player = mc.player;
+            AbstractClientPlayer player = mc.player;
             if (player == null) {
                 return true;
             }

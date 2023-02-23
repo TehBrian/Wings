@@ -2,8 +2,8 @@ package me.paulf.wings.client.flight;
 
 import com.google.common.collect.ImmutableMap;
 import me.paulf.wings.util.Mth;
+import net.minecraft.world.level.levelgen.synth.SimplexNoise;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.gen.SimplexNoiseGenerator;
 
 import java.util.Random;
 
@@ -149,7 +149,7 @@ public final class AnimatorAvian implements Animator {
     }
 
     private final class GlideMovement implements Movement {
-        private final SimplexNoiseGenerator noise = new SimplexNoiseGenerator(new Random());
+        private final SimplexNoise noise = new SimplexNoise(new Random());
 
         private int time;
 
@@ -241,7 +241,7 @@ public final class AnimatorAvian implements Animator {
     }
 
     private final class FallMovement implements Movement {
-        private final SimplexNoiseGenerator noise = new SimplexNoiseGenerator(new Random());
+        private final SimplexNoise noise = new SimplexNoise(new Random());
 
         private final WingPose wing = WingPose.builder()
             .with(0, 30.0D, -23.0D, -50.0D)

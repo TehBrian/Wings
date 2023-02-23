@@ -8,17 +8,15 @@ import me.paulf.wings.server.command.WingsCommand;
 import me.paulf.wings.server.flight.Flight;
 import me.paulf.wings.server.flight.Flights;
 import me.paulf.wings.server.item.WingsItems;
-import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.entity.passive.BatEntity;
+import net.minecraft.world.entity.ambient.Bat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
@@ -38,7 +36,7 @@ public final class ServerEventHandler {
         Player player = event.getPlayer();
         InteractionHand hand = event.getHand();
         ItemStack stack = player.getItemInHand(hand);
-        if (event.getTarget() instanceof BatEntity && stack.getItem() == Items.GLASS_BOTTLE) {
+        if (event.getTarget() instanceof Bat && stack.getItem() == Items.GLASS_BOTTLE) {
             player.level.playSound(
                 player,
                 player.getX(), player.getY(), player.getZ(),

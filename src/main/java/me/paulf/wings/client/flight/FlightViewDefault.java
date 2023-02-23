@@ -7,7 +7,7 @@ import me.paulf.wings.client.flight.state.State;
 import me.paulf.wings.client.flight.state.StateIdle;
 import me.paulf.wings.server.flight.Flight;
 import me.paulf.wings.util.function.FloatConsumer;
-import net.minecraft.entity.Pose;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 
