@@ -34,7 +34,7 @@ public abstract class State {
 
     private State getNext(Flight flight, double x, double y, double z, Player player) {
         if (flight.isFlying()) {
-            if (y < 0 && player.xRot >= this.getPitch(x, y, z)) {
+            if (y < 0 && player.getXRot() >= this.getPitch(x, y, z)) {
                 return this.createGlide();
             }
             return this.createLift();

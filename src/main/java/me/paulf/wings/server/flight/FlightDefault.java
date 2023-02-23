@@ -130,19 +130,19 @@ public final class FlightDefault implements Flight {
             if (this.isFlying()) {
                 float speed = (float) net.minecraft.util.Mth.clampedLerp(MIN_SPEED, MAX_SPEED, player.zza);
                 float elevationBoost = Mth.transform(
-                    Math.abs(player.xRot),
+                    Math.abs(player.getXRot()),
                     45.0F, 90.0F,
                     1.0F, 0.0F
                 );
-                float pitch = -Mth.toRadians(player.xRot - PITCH_OFFSET * elevationBoost);
-                float yaw = -Mth.toRadians(player.yRot) - Mth.PI;
+                float pitch = -Mth.toRadians(player.getXRot() - PITCH_OFFSET * elevationBoost);
+                float yaw = -Mth.toRadians(player.getYRot()) - Mth.PI;
                 float vxz = -net.minecraft.util.Mth.cos(pitch);
                 float vy = net.minecraft.util.Mth.sin(pitch);
                 float vz = net.minecraft.util.Mth.cos(yaw);
                 float vx = net.minecraft.util.Mth.sin(yaw);
                 player.setDeltaMovement(player.getDeltaMovement().add(
                     vx * vxz * speed,
-                    vy * speed + Y_BOOST * (player.xRot > 0.0F ? elevationBoost : 1.0D),
+                    vy * speed + Y_BOOST * (player.getXRot() > 0.0F ? elevationBoost : 1.0D),
                     vz * vxz * speed
                 ));
             }

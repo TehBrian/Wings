@@ -57,10 +57,10 @@ public final class ClientEventHandler {
             if (amt > 0.0F) {
                 float roll = Mth.lerpDegrees(
                     player.yBodyRotO - player.yRotO,
-                    player.yBodyRot - player.yRot,
+                    player.yBodyRot - player.getYRot(),
                     delta
                 );
-                float pitch = -Mth.lerpDegrees(player.xRotO, player.xRot, delta) - 90.0F;
+                float pitch = -Mth.lerpDegrees(player.xRotO, player.getXRot(), delta) - 90.0F;
                 matrixStack.mulPose(Vector3f.ZP.rotationDegrees(Mth.lerpDegrees(0.0F, roll, amt)));
                 matrixStack.mulPose(Vector3f.XP.rotationDegrees(Mth.lerpDegrees(0.0F, pitch, amt)));
                 matrixStack.translate(0.0D, -1.2D * Mth.easeInOut(amt), 0.0D);
@@ -86,7 +86,7 @@ public final class ClientEventHandler {
             if (amt > 0.0F) {
                 float roll = Mth.lerpDegrees(
                     player.yBodyRotO - player.yRotO,
-                    player.yBodyRot - player.yRot,
+                    player.yBodyRot - player.getYRot(),
                     delta
                 );
                 event.setRoll(Mth.lerpDegrees(0.0F, -roll * 0.25F, amt));

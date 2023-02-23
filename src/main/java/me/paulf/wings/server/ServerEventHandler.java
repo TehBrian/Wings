@@ -46,7 +46,7 @@ public final class ServerEventHandler {
                 1.0F
             );
             ItemStack destroyed = stack.copy();
-            if (!player.abilities.instabuild) {
+            if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }
             player.awardStat(Stats.ITEM_USED.get(Items.GLASS_BOTTLE));
@@ -54,7 +54,7 @@ public final class ServerEventHandler {
             if (stack.isEmpty()) {
                 ForgeEventFactory.onPlayerDestroyItem(player, destroyed, hand);
                 player.setItemInHand(hand, batBlood);
-            } else if (!player.inventory.add(batBlood)) {
+            } else if (!player.getInventory().add(batBlood)) {
                 player.drop(batBlood, false);
             }
             event.setCancellationResult(InteractionResult.SUCCESS);

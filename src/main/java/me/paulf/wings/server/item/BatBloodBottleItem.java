@@ -32,20 +32,18 @@ public class BatBloodBottleItem extends Item {
                 world.playSound(null, living.getX(), living.getY(), living.getZ(), WingsSounds.ITEM_ARMOR_EQUIP_WINGS.get(), SoundSource.PLAYERS, 1.0F, 0.8F);
             }
         }
-        if (living instanceof Player) {
-            Player player = (Player) living;
+        if (living instanceof Player player) {
             player.awardStat(Stats.ITEM_USED.get(this));
-            if (!player.abilities.instabuild) {
+            if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }
         }
         if (stack.isEmpty()) {
             return new ItemStack(Items.GLASS_BOTTLE);
         }
-        if (living instanceof Player && !((Player) living).abilities.instabuild) {
+        if (living instanceof Player player && !player.getAbilities().instabuild) {
             ItemStack emptyBottle = new ItemStack(Items.GLASS_BOTTLE);
-            Player player = (Player) living;
-            if (!player.inventory.add(emptyBottle)) {
+            if (!player.getInventory().add(emptyBottle)) {
                 player.drop(emptyBottle, false);
             }
         }
