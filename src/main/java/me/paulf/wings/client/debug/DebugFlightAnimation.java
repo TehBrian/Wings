@@ -8,7 +8,7 @@ import me.paulf.wings.server.flight.Flights;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.RemotePlayer;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -100,7 +100,7 @@ public final class DebugFlightAnimation {
         public void render(RenderLevelLastEvent event) {
             Minecraft mc = Minecraft.getInstance();
             if (mc.level != null && mc.player != null && mc.cameraEntity != null) {
-                Context manager = mc.getEntityRenderDispatcher();
+                EntityRenderDispatcher manager = mc.getEntityRenderDispatcher();
                 Vec3 projectedView = mc.gameRenderer.getMainCamera().getPosition();
                 manager.render(
                     this.player,
@@ -108,10 +108,10 @@ public final class DebugFlightAnimation {
                     this.player.getY() - projectedView.y(),
                     this.player.getZ() - projectedView.z(),
                     0.0F,
-                    event.getPartialTicks(),
-                    event.getMatrixStack(),
+                    event.getPartialTick(),
+                    event.getPoseStack(),
                     mc.renderBuffers().bufferSource(),
-                    manager.getPackedLightCoords(this.player, event.getPartialTicks())
+                    manager.getPackedLightCoords(this.player, event.getPartialTick())
                 );
             }
         }

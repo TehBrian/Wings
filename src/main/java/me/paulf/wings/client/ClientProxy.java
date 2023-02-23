@@ -20,7 +20,7 @@ import me.paulf.wings.util.SimpleStorage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -60,7 +60,7 @@ public final class ClientProxy extends Proxy {
         modBus.<FMLClientSetupEvent>addListener(e -> {
             e.enqueueWork(() -> {
                 Minecraft mc = Minecraft.getInstance();
-                Context manager = mc.getEntityRenderDispatcher();
+                EntityRenderDispatcher manager = mc.getEntityRenderDispatcher();
                 Stream.concat(manager.getSkinMap().values().stream(), manager.renderers.values().stream())
                     .filter(LivingEntityRenderer.class::isInstance)
                     .map(r -> (LivingEntityRenderer<?, ?>) r)
