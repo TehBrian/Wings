@@ -1,19 +1,19 @@
 package me.paulf.wings.util;
 
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.INBT;
-import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
 
 public final class SimpleStorage<T> implements Capability.IStorage<T> {
-    private final Function<T, CompoundNBT> serializer;
+    private final Function<T, CompoundTag> serializer;
 
-    private final Consumer<CompoundNBT> deserializer;
+    private final Consumer<CompoundTag> deserializer;
 
-    private SimpleStorage(Function<T, CompoundNBT> serializer, Consumer<CompoundNBT> deserializer) {
+    private SimpleStorage(Function<T, CompoundTag> serializer, Consumer<CompoundTag> deserializer) {
         this.serializer = serializer;
         this.deserializer = deserializer;
     }
@@ -25,7 +25,7 @@ public final class SimpleStorage<T> implements Capability.IStorage<T> {
 
     @Override
     public void readNBT(Capability<T> capability, T instance, Direction side, INBT tag) {
-        this.deserializer.accept(tag instanceof CompoundNBT ? (CompoundNBT) tag : new CompoundNBT());
+        this.deserializer.accept(tag instanceof CompoundTag ? (CompoundTag) tag : new CompoundTag());
     }
 
     public static <T> SimpleStorage<T> ofVoid() {
@@ -33,7 +33,7 @@ public final class SimpleStorage<T> implements Capability.IStorage<T> {
         });
     }
 
-    public static <T> SimpleStorage<T> of(Function<T, CompoundNBT> serializer, Consumer<CompoundNBT> deserializer) {
+    public static <T> SimpleStorage<T> of(Function<T, CompoundTag> serializer, Consumer<CompoundTag> deserializer) {
         return new SimpleStorage<>(serializer, deserializer);
     }
 }

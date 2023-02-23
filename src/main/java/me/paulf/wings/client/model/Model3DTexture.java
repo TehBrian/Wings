@@ -1,7 +1,7 @@
 package me.paulf.wings.client.model;
 
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 import java.lang.reflect.Array;

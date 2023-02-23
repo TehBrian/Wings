@@ -1,8 +1,8 @@
 package me.paulf.wings.client.model;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import it.unimi.dsi.fastutil.objects.ObjectList;
 import me.paulf.wings.client.flight.AnimatorAvian;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -97,7 +97,7 @@ public final class ModelWingsAvian extends ModelWings<AnimatorAvian> {
     }
 
     @Override
-    public void render(AnimatorAvian animator, float delta, MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+    public void render(AnimatorAvian animator, float delta, PoseStack matrixStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         for (int i = 0; i < this.bonesLeft.size(); i++) {
             ModelRenderer left = this.bonesLeft.get(i);
             ModelRenderer right = this.bonesRight.get(i);

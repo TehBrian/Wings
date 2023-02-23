@@ -1,7 +1,5 @@
 package me.paulf.wings.util;
 
-import net.minecraft.util.math.MathHelper;
-
 public final class Mth {
     private Mth() {
     }
@@ -55,11 +53,11 @@ public final class Mth {
     }
 
     public static float easeInOut(float t) {
-        return -(MathHelper.cos(PI * t) - 1.0F) / 2.0F;
+        return -(net.minecraft.util.Mth.cos(PI * t) - 1.0F) / 2.0F;
     }
 
     public static float easeOutCirc(float t) {
-        return MathHelper.sqrt(1.0F - (t - 1.0F) * (t - 1.0F));
+        return net.minecraft.util.Mth.sqrt(1.0F - (t - 1.0F) * (t - 1.0F));
     }
 
     public static float transform(float x, float domainMin, float domainMax, float rangeMin, float rangeMax) {

@@ -1,6 +1,7 @@
 package me.paulf.wings.client;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
 import me.paulf.wings.WingsMod;
 import me.paulf.wings.client.audio.WingsSound;
 import me.paulf.wings.client.flight.FlightView;
@@ -15,9 +16,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.entity.model.PlayerModel;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.event.TickEvent;
@@ -33,7 +33,7 @@ public final class ClientEventHandler {
 
     @SubscribeEvent
     public static void onAnimatePlayerModel(AnimatePlayerModelEvent event) {
-        PlayerEntity player = event.getPlayer();
+        Player player = event.getPlayer();
         Flights.get(player).ifPresent(flight -> {
             float delta = event.getTicksExisted() - player.tickCount;
             float amt = flight.getFlyingAmount(delta);
@@ -52,7 +52,7 @@ public final class ClientEventHandler {
     @SubscribeEvent
     public static void onApplyRotations(ApplyPlayerRotationsEvent event) {
         Flights.ifPlayer(event.getEntity(), (player, flight) -> {
-            MatrixStack matrixStack = event.getMatrixStack();
+            PoseStack matrixStack = event.getMatrixStack();
             float delta = event.getDelta();
             float amt = flight.getFlyingAmount(delta);
             if (amt > 0.0F) {
@@ -106,14 +106,14 @@ public final class ClientEventHandler {
 
     @SubscribeEvent
     public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
-        Flights.ifPlayer(event.getEntity(), PlayerEntity::isLocalPlayer, (player, flight) ->
+        Flights.ifPlayer(event.getEntity(), Player::isLocalPlayer, (player, flight) ->
             Minecraft.getInstance().getSoundManager().play(new WingsSound(player, flight))
         );
     }
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        PlayerEntity entity = event.player;
+        Player entity = event.player;
         if (event.phase == TickEvent.Phase.END && entity instanceof AbstractClientPlayerEntity) {
             AbstractClientPlayerEntity player = (AbstractClientPlayerEntity) entity;
             FlightViews.get(player).ifPresent(FlightView::tick);

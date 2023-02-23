@@ -2,8 +2,8 @@ package me.paulf.wings.util;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.INBT;
-import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;

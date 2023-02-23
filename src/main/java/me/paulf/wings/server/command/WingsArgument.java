@@ -9,9 +9,9 @@ import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import me.paulf.wings.WingsMod;
 import me.paulf.wings.server.apparatus.FlightApparatus;
-import net.minecraft.command.CommandSource;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.command.ISuggestionProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Arrays;
@@ -29,7 +29,7 @@ public class WingsArgument implements ArgumentType<FlightApparatus> {
         return new WingsArgument();
     }
 
-    public static FlightApparatus getWings(CommandContext<CommandSource> ctx, String value) throws CommandSyntaxException {
+    public static FlightApparatus getWings(CommandContext<CommandSourceStack> ctx, String value) throws CommandSyntaxException {
         return ctx.getArgument(value, FlightApparatus.class);
     }
 

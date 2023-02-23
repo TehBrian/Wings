@@ -7,15 +7,15 @@ import me.paulf.wings.server.effect.WingsEffects;
 import me.paulf.wings.server.flight.Flights;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.RemoteClientPlayerEntity;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.client.event.RenderLevelLastEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -69,13 +69,13 @@ public final class DebugFlightAnimation {
             "ModDeveloper"
         );
 
-        private PlayerEntity player;
+        private Player player;
 
         @SubscribeEvent
         public void tick(TickEvent.ClientTickEvent event) {
             if (event.phase == TickEvent.Phase.END) {
                 Minecraft mc = Minecraft.getInstance();
-                ClientWorld world = mc.level;
+                ClientLevel world = mc.level;
                 if (world != null && (this.player == null || this.player.level != world)) {
                     this.player = new RemoteClientPlayerEntity(world, PROFILE) {{
                         this.getEntityData().set(DATA_PLAYER_MODE_CUSTOMISATION, (byte) 0xFF);
@@ -84,9 +84,9 @@ public final class DebugFlightAnimation {
                     this.player.setPos(0.0D, 62.0D, 0.0D);
                     this.player.zo = -1.0D;
                     this.player.yo = 63.0D;
-                    this.player.addEffect(new EffectInstance(WingsEffects.WINGS.get()));
+                    this.player.addEffect(new MobEffectInstance(WingsEffects.WINGS.get()));
                     Flights.get(this.player).ifPresent(flight -> flight.setIsFlying(true));
-                    Int2ObjectMap<Entity> entities = ObfuscationReflectionHelper.getPrivateValue(ClientWorld.class, world, "entitiesById");
+                    Int2ObjectMap<Entity> entities = ObfuscationReflectionHelper.getPrivateValue(ClientLevel.class, world, "entitiesById");
                     entities.put(this.player.getId(), this.player);
                 }
                 if (this.player != null && mc.getConnection() != null) {
@@ -97,11 +97,11 @@ public final class DebugFlightAnimation {
         }
 
         @SubscribeEvent
-        public void render(RenderWorldLastEvent event) {
+        public void render(RenderLevelLastEvent event) {
             Minecraft mc = Minecraft.getInstance();
             if (mc.level != null && mc.player != null && mc.cameraEntity != null) {
-                EntityRendererManager manager = mc.getEntityRenderDispatcher();
-                Vector3d projectedView = mc.gameRenderer.getMainCamera().getPosition();
+                Context manager = mc.getEntityRenderDispatcher();
+                Vec3 projectedView = mc.gameRenderer.getMainCamera().getPosition();
                 manager.render(
                     this.player,
                     this.player.getX() - projectedView.x(),

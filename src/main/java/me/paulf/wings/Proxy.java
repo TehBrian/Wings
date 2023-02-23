@@ -8,18 +8,18 @@ import me.paulf.wings.server.net.Network;
 import me.paulf.wings.server.net.clientbound.MessageSyncFlight;
 import me.paulf.wings.server.potion.PotionMix;
 import me.paulf.wings.util.SimpleStorage;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.Potions;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import java.util.function.BiConsumer;
@@ -56,8 +56,8 @@ public abstract class Proxy {
         });
     }
 
-    public void addFlightListeners(PlayerEntity player, Flight instance) {
-        if (player instanceof ServerPlayerEntity) {
+    public void addFlightListeners(Player player, Flight instance) {
+        if (player instanceof ServerPlayer) {
             instance.registerFlyingListener(isFlying -> player.abilities.mayfly = isFlying);
             instance.registerFlyingListener(isFlying -> {
                 if (isFlying) {
@@ -65,7 +65,7 @@ public abstract class Proxy {
                 }
             });
             Flight.Notifier notifier = Flight.Notifier.of(
-                () -> this.network.sendToPlayer(new MessageSyncFlight(player, instance), (ServerPlayerEntity) player),
+                () -> this.network.sendToPlayer(new MessageSyncFlight(player, instance), (ServerPlayer) player),
                 p -> this.network.sendToPlayer(new MessageSyncFlight(player, instance), p),
                 () -> this.network.sendToAllTracking(new MessageSyncFlight(player, instance), player)
             );
