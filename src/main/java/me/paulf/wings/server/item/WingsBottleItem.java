@@ -13,11 +13,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.DrinkHelper;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.Level;
 
@@ -85,6 +85,6 @@ public class WingsBottleItem extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-        return DrinkHelper.useDrink(world, player, hand);
+        return ItemUtils.startUsingInstantly(world, player, hand);
     }
 }
