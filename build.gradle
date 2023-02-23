@@ -1,6 +1,5 @@
 buildscript {
 	repositories {
-		jcenter()
 		maven { url 'https://files.minecraftforge.net/maven' }
 	}
 	dependencies {
@@ -13,7 +12,7 @@ version = '2.1.0'
 group = 'me.paulf.wings'
 archivesBaseName = 'wings'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
 	mappings channel: 'official', version: '1.16.5'
