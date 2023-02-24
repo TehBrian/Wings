@@ -83,7 +83,6 @@ public final class NetBuilder {
         return new MessageBuilder<>(factory, new HandlerConsumerFactory<>(LogicalSide.SERVER, ServerMessageContext::new));
     }
 
-    @SuppressWarnings("Convert2MethodRef")
     public <T extends Message> MessageBuilder<T, ClientMessageContext> clientbound(Supplier<T> factory) {
         return new MessageBuilder<>(factory, DistExecutor.runForDist(() -> () -> new HandlerConsumerFactory<>(LogicalSide.CLIENT, ClientMessageContext::new), () -> () -> new NoopConsumerFactory<>()));
     }

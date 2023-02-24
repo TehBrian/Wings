@@ -77,14 +77,11 @@ public final class CapabilityProviders {
         @Override
         public ICapabilityProvider build() {
             ImmutableList<ICapabilityProvider> providers = this.providers.build();
-            switch (providers.size()) {
-                case 0:
-                    return empty();
-                case 1:
-                    return Iterables.getOnlyElement(providers);
-                default:
-                    return new CompositeProvider(providers);
-            }
+            return switch (providers.size()) {
+                case 0 -> empty();
+                case 1 -> Iterables.getOnlyElement(providers);
+                default -> new CompositeProvider(providers);
+            };
         }
     }
 

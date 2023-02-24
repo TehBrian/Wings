@@ -5,7 +5,7 @@ import me.paulf.wings.util.Access;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
-import net.minecraft.client.renderer.FirstPersonRenderer;
+import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -87,11 +87,11 @@ public final class WingsHooksClient {
         private GetItemStackMainHand() {
         }
 
-        private static final MethodHandle MH = Access.getter(FirstPersonRenderer.class)
+        private static final MethodHandle MH = Access.getter(ItemInHandRenderer.class)
             .name("field_187467_d", "mainHandItem")
             .type(ItemStack.class);
 
-        private static ItemStack invoke(FirstPersonRenderer instance) {
+        private static ItemStack invoke(ItemInHandRenderer instance) {
             try {
                 return (ItemStack) MH.invokeExact(instance);
             } catch (Throwable t) {
